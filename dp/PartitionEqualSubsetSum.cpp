@@ -13,19 +13,19 @@ const int mod = 1e9 + 7;
 
 bool canPartition(vector<int>& nums) 
 { 
-int sum=0,n=nums.size();
-function<int(int, int)> helper;
+    int sum=0,n=nums.size();
+    function<int(int, int)> helper;
 
-for(int i=0;i<nums.size();i++)
-{
-    sum+=nums[i];
-}
+    for(int i=0;i<nums.size();i++)
+    {
+     sum+=nums[i];
+    }
 
-if(sum%2==1) return 0;
+    if(sum%2==1) return 0;
 
-vector<vector<int>> dp(n, vector<int>(sum/2+ 1, -1));
+    vector<vector<int>> dp(n, vector<int>(sum/2+ 1, -1));
 
-helper = [&](int i, int k) -> int {
+    helper = [&](int i, int k) -> int {
     if (k == 0)
         return 1;
     if (i == 0)
@@ -39,9 +39,9 @@ helper = [&](int i, int k) -> int {
     int notpick = helper(i - 1, k);
 
     return dp[i][k] = pick || notpick;
-};
+    };
 
-return helper(n - 1, sum/2);
+    return helper(n - 1, sum/2);
 }
 
     int main() 
